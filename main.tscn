@@ -1,12 +1,13 @@
-[gd_scene load_steps=5 format=3 uid="uid://r2sl7al7762r"]
+[gd_scene load_steps=6 format=3 uid="uid://cgu5deumd0n28"]
 
-[ext_resource type="Script" uid="uid://bw4kfx6l33u4j" path="res://main.gd" id="1_h2yge"]
+[ext_resource type="Script" uid="uid://dwlwsx23qbl40" path="res://main.gd" id="1_h2yge"]
 [ext_resource type="PackedScene" uid="uid://ynp2sqw1ytr3" path="res://mob.tscn" id="2_1bvp3"]
-[ext_resource type="PackedScene" uid="uid://cpsulnddf1qn2" path="res://cat_area_2d.tscn" id="3_lquwl"]
+[ext_resource type="PackedScene" uid="uid://cpsulnddf1qn2" path="res://player.tscn" id="3_1bvp3"]
+[ext_resource type="PackedScene" uid="uid://dp8pctdmenn73" path="res://hud.tscn" id="4_1bvp3"]
 
-[sub_resource type="Curve2D" id="Curve2D_7dm0k"]
+[sub_resource type="Curve2D" id="Curve2D_0xm2m"]
 _data = {
-"points": PackedVector2Array(0, 0, 0, 0, 1, -3, 0, 0, 0, 0, 1916, 9, 0, 0, 0, 0, 1922, 1020, 0, 0, 0, 0, 1, 1023, 0, 0, 0, 0, 1, -3)
+"points": PackedVector2Array(0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 1912, -8, 0, 0, 0, 0, 1912, 1016, 0, 0, 0, 0, 0, 1016, 0, 0, 0, 0, 0, 0)
 }
 point_count = 5
 
@@ -14,29 +15,24 @@ point_count = 5
 script = ExtResource("1_h2yge")
 mob_scene = ExtResource("2_1bvp3")
 
-[node name="Player" parent="." instance=ExtResource("3_lquwl")]
+[node name="Player" parent="." instance=ExtResource("3_1bvp3")]
 
 [node name="StartPosition" type="Marker2D" parent="."]
 position = Vector2(240, 450)
-
-[node name="StartTimer" type="Timer" parent="."]
-wait_time = 2.0
-one_shot = true
 
 [node name="MobTimer" type="Timer" parent="."]
 wait_time = 0.5
 
 [node name="ScoreTimer" type="Timer" parent="."]
 
+[node name="StartTimer" type="Timer" parent="."]
+wait_time = 2.0
+one_shot = true
+
 [node name="MobPath" type="Path2D" parent="."]
-curve = SubResource("Curve2D_7dm0k")
+curve = SubResource("Curve2D_0xm2m")
 
 [node name="MobSpawnLocation" type="PathFollow2D" parent="MobPath"]
-position = Vector2(1, -3)
-rotation = 0.00626624
+rotation = -0.00418408
 
-[connection signal="hit" from="Player" to="." method="game_over"]
-[connection signal="hit" from="Player" to="." method="new_game"]
-[connection signal="timeout" from="StartTimer" to="." method="_on_start_timer_timeout"]
-[connection signal="timeout" from="MobTimer" to="." method="_on_mob_timer_timeout"]
-[connection signal="timeout" from="ScoreTimer" to="." method="_on_score_timer_timeout"]
+[node name="HUD" parent="." instance=ExtResource("4_1bvp3")]
