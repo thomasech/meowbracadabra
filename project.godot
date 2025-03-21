@@ -11,13 +11,14 @@ config_version=5
 [application]
 
 config/name="Witch's Mew"
+run/main_scene="uid://r2sl7al7762r"
 config/features=PackedStringArray("4.4", "GL Compatibility")
 config/icon="res://icon.svg"
 
 [display]
 
 window/size/viewport_width=1920
-window/size/viewport_height=720
+window/size/viewport_height=1028
 
 [input]
 
