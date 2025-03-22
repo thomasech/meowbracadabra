@@ -1,4 +1,4 @@
-[gd_scene load_steps=17 format=3 uid="uid://cgu5deumd0n28"]
+[gd_scene load_steps=7 format=3 uid="uid://cgu5deumd0n28"]
 
 [ext_resource type="Script" uid="uid://dwlwsx23qbl40" path="res://main.gd" id="1_h2yge"]
 [ext_resource type="PackedScene" uid="uid://hjglfojsbua" path="res://hole.tscn" id="2_lquwl"]
@@ -11,36 +11,6 @@ _data = {
 "points": PackedVector2Array(0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 1912, -8, 0, 0, 0, 0, 1912, 1016, 0, 0, 0, 0, 0, 1016, 0, 0, 0, 0, 0, 0)
 }
 point_count = 5
-
-[sub_resource type="RectangleShape2D" id="RectangleShape2D_lquwl"]
-size = Vector2(92.125, 320)
-
-[sub_resource type="RectangleShape2D" id="RectangleShape2D_7mycd"]
-size = Vector2(39.75, 572)
-
-[sub_resource type="RectangleShape2D" id="RectangleShape2D_272bh"]
-size = Vector2(464, 66)
-
-[sub_resource type="RectangleShape2D" id="RectangleShape2D_5vw27"]
-size = Vector2(296, 40)
-
-[sub_resource type="RectangleShape2D" id="RectangleShape2D_kek77"]
-size = Vector2(416, 78)
-
-[sub_resource type="RectangleShape2D" id="RectangleShape2D_4c57u"]
-size = Vector2(496, 137)
-
-[sub_resource type="RectangleShape2D" id="RectangleShape2D_efxa6"]
-size = Vector2(64, 806.5)
-
-[sub_resource type="RectangleShape2D" id="RectangleShape2D_dg77c"]
-size = Vector2(848, 88)
-
-[sub_resource type="RectangleShape2D" id="RectangleShape2D_ycdy4"]
-size = Vector2(136, 88)
-
-[sub_resource type="RectangleShape2D" id="RectangleShape2D_w48qg"]
-size = Vector2(728, 80)
 
 [node name="Main" type="Node"]
 script = ExtResource("1_h2yge")
@@ -70,47 +40,5 @@ rotation = -0.00418408
 
 [node name="HUD" parent="." instance=ExtResource("4_1bvp3")]
 visible = false
-
-[node name="MapCollider" type="StaticBody2D" parent="."]
-
-[node name="CollisionShape2D2" type="CollisionShape2D" parent="MapCollider"]
-position = Vector2(147.938, 768)
-shape = SubResource("RectangleShape2D_lquwl")
-
-[node name="CollisionShape2D" type="CollisionShape2D" parent="MapCollider"]
-position = Vector2(111.875, 360)
-shape = SubResource("RectangleShape2D_7mycd")
-
-[node name="CollisionShape2D3" type="CollisionShape2D" parent="MapCollider"]
-position = Vector2(392, 927)
-shape = SubResource("RectangleShape2D_272bh")
-
-[node name="CollisionShape2D4" type="CollisionShape2D" parent="MapCollider"]
-position = Vector2(748, 964)
-shape = SubResource("RectangleShape2D_5vw27")
-
-[node name="CollisionShape2D5" type="CollisionShape2D" parent="MapCollider"]
-position = Vector2(1088, 935)
-shape = SubResource("RectangleShape2D_kek77")
-
-[node name="CollisionShape2D6" type="CollisionShape2D" parent="MapCollider"]
-position = Vector2(1528, 876.5)
-shape = SubResource("RectangleShape2D_4c57u")
-
-[node name="CollisionShape2D7" type="CollisionShape2D" parent="MapCollider"]
-position = Vector2(1792, 483.25)
-shape = SubResource("RectangleShape2D_efxa6")
-
-[node name="CollisionShape2D8" type="CollisionShape2D" parent="MapCollider"]
-position = Vector2(520, 76)
-shape = SubResource("RectangleShape2D_dg77c")
-
-[node name="CollisionShape2D9" type="CollisionShape2D" parent="MapCollider"]
-position = Vector2(996, 140)
-shape = SubResource("RectangleShape2D_ycdy4")
-
-[node name="CollisionShape2D10" type="CollisionShape2D" parent="MapCollider"]
-position = Vector2(1420, 72)
-shape = SubResource("RectangleShape2D_w48qg")
 
 [node name="Player" parent="." instance=ExtResource("5_lquwl")]
