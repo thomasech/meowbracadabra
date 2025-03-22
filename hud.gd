@@ -6,10 +6,6 @@ signal start_game
 func _ready() -> void:
 	pass
 
-# Called every frame. 'delta' is the elapsed time since the previous frame.
-func _process(delta: float) -> void:
-	pass
-
 func show_message(text):
 	$Message.text = text
 	$Message.show()
@@ -20,7 +16,7 @@ func show_game_over():
 	# Wait until the MessageTimer has counted down.
 	await $MessageTimer.timeout
 
-	$Message.text = "Dodge the Creeps!"
+	$Message.text = "Hello kitten..."
 	$Message.show()
 	# Make a one-shot timer and wait for it to finish.
 	await get_tree().create_timer(1.0).timeout

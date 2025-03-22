@@ -1,9 +1,10 @@
-[gd_scene load_steps=6 format=3 uid="uid://cgu5deumd0n28"]
+[gd_scene load_steps=9 format=3 uid="uid://cgu5deumd0n28"]
 
 [ext_resource type="Script" uid="uid://dwlwsx23qbl40" path="res://main.gd" id="1_h2yge"]
 [ext_resource type="PackedScene" uid="uid://ynp2sqw1ytr3" path="res://mob.tscn" id="2_1bvp3"]
 [ext_resource type="PackedScene" uid="uid://cpsulnddf1qn2" path="res://player.tscn" id="3_1bvp3"]
 [ext_resource type="PackedScene" uid="uid://dp8pctdmenn73" path="res://hud.tscn" id="4_1bvp3"]
+[ext_resource type="Texture2D" uid="uid://bsbyjn7uxp3be" path="res://art/background.png" id="5_lquwl"]
 
 [sub_resource type="Curve2D" id="Curve2D_0xm2m"]
 _data = {
@@ -11,11 +12,20 @@ _data = {
 }
 point_count = 5
 
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_lquwl"]
+size = Vector2(92.125, 320)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_7mycd"]
+size = Vector2(39.75, 572)
+
 [node name="Main" type="Node"]
 script = ExtResource("1_h2yge")
 mob_scene = ExtResource("2_1bvp3")
 
-[node name="Player" parent="." instance=ExtResource("3_1bvp3")]
+[node name="TextureRect" type="TextureRect" parent="."]
+offset_right = 1920.0
+offset_bottom = 1028.0
+texture = ExtResource("5_lquwl")
 
 [node name="StartPosition" type="Marker2D" parent="."]
 position = Vector2(240, 450)
@@ -29,6 +39,9 @@ wait_time = 0.5
 wait_time = 2.0
 one_shot = true
 
+[node name="Player" parent="." instance=ExtResource("3_1bvp3")]
+position = Vector2(562, 613)
+
 [node name="MobPath" type="Path2D" parent="."]
 curve = SubResource("Curve2D_0xm2m")
 
@@ -36,3 +49,13 @@ curve = SubResource("Curve2D_0xm2m")
 rotation = -0.00418408
 
 [node name="HUD" parent="." instance=ExtResource("4_1bvp3")]
+
+[node name="StaticBody2D" type="StaticBody2D" parent="."]
+
+[node name="CollisionShape2D2" type="CollisionShape2D" parent="StaticBody2D"]
+position = Vector2(147.938, 768)
+shape = SubResource("RectangleShape2D_lquwl")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="StaticBody2D"]
+position = Vector2(111.875, 360)
+shape = SubResource("RectangleShape2D_7mycd")
