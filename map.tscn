@@ -1,0 +1,19 @@
+[gd_scene load_steps=3 format=3 uid="uid://n5gxuj2g1rg8"]
+
+[ext_resource type="Texture2D" uid="uid://bsbyjn7uxp3be" path="res://art/background.png" id="1_wijl4"]
+[ext_resource type="Texture2D" uid="uid://xoi286utmmwt" path="res://art/background_vector.png" id="2_wijl4"]
+
+[node name="Map" type="Area2D"]
+
+[node name="TextureRect" type="TextureRect" parent="."]
+offset_right = 40.0
+offset_bottom = 40.0
+texture = ExtResource("1_wijl4")
+
+[node name="Sprite2D" type="Sprite2D" parent="."]
+position = Vector2(960, 512)
+texture = ExtResource("2_wijl4")
+
+[node name="CollisionPolygon2D2" type="CollisionPolygon2D" parent="."]
+position = Vector2(960, 512)
+polygon = PackedVector2Array(-184, -512, -24, -512, -32, -408, -840, -408, -840, 104, -784, 104, -784, 392, -344, 392, -344, 440, -72, 440, -72, 392, 328, 392, 328, 296, 808, 296, 808, -424, 104, -424, 104, -344, -32, -344, -32, -408, -32, -432, -24, -512, 960, -512, 960, 512, -952, 512, -952, -512)
