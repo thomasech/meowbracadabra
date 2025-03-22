@@ -14,7 +14,7 @@ func _ready() -> void:
 # Called every frame. 'delta' is the elapsed time since the previous frame.
 func _process(delta: float) -> void:
 	var velocity = Vector2.ZERO # The player's movement vector.
-	var collision
+	#var collision
 	
 	if Input.is_action_pressed("move_right"):
 		velocity.x += 1
@@ -60,6 +60,11 @@ func dig():
 	var scene_to_instance = preload("res://hole.tscn")
 	var object = scene_to_instance.instantiate()
 	var coordinates = $AnimatedSprite2D.global_position
-	$AnimatedSprite2D.get_parent().get_parent().add_child(object)
+	object.add_to_group(&"MapObjectsGroup")
+	var main = $AnimatedSprite2D.get_parent().get_parent()
+	var MOG = main.get_node("MapObjectsGroup")
+	MOG.add_child(object)
+	#main.add_child(object)
+	
 	object.position = Vector2(coordinates)
 	

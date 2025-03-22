@@ -1,7 +1,7 @@
 [gd_scene load_steps=17 format=3 uid="uid://cgu5deumd0n28"]
 
 [ext_resource type="Script" uid="uid://dwlwsx23qbl40" path="res://main.gd" id="1_h2yge"]
-[ext_resource type="PackedScene" uid="uid://ynp2sqw1ytr3" path="res://mob.tscn" id="2_1bvp3"]
+[ext_resource type="PackedScene" uid="uid://hjglfojsbua" path="res://hole.tscn" id="2_lquwl"]
 [ext_resource type="PackedScene" uid="uid://cpsulnddf1qn2" path="res://player.tscn" id="3_1bvp3"]
 [ext_resource type="PackedScene" uid="uid://n5gxuj2g1rg8" path="res://map.tscn" id="3_lquwl"]
 [ext_resource type="PackedScene" uid="uid://dp8pctdmenn73" path="res://hud.tscn" id="4_1bvp3"]
@@ -44,9 +44,12 @@ size = Vector2(728, 80)
 
 [node name="Main" type="Node"]
 script = ExtResource("1_h2yge")
-mob_scene = ExtResource("2_1bvp3")
+mob_scene = ExtResource("2_lquwl")
 
 [node name="Map" parent="." instance=ExtResource("3_lquwl")]
+
+[node name="MapObjectsGroup" type="CanvasGroup" parent="."]
+position = Vector2(240, 450)
 
 [node name="StartPosition" type="Marker2D" parent="."]
 position = Vector2(240, 450)

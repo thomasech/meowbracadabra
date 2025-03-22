@@ -13,7 +13,11 @@ func game_over():
 
 
 func new_game():
-	get_tree().call_group(&"mobs", &"queue_free")
+	get_tree().call_group(&"MapObjectsGroup", &"queue_free")
+	#var scene = preload("res://hole.tscn")
+	#var hole = scene.instantiate()
+	#$MapObjectsGroup.add_child(hole)
+	#hole.add_to_group(&"MapObjectsGroup")
 	score = 0
 	$Player.start($StartPosition.position)
 	$StartTimer.start()
