@@ -1,70 +1,25 @@
-extends Area2D
-
-@export var speed = 400 # How fast the player will move (pixels/sec).
-var screen_size # Size of the game window.
-
-signal hit
-
-# Called when the node enters the scene tree for the first time.
-func _ready() -> void:
-	screen_size = get_viewport_rect().size
-	hide()
+extends CharacterBody2D
 
 
-# Called every frame. 'delta' is the elapsed time since the previous frame.
-func _process(delta: float) -> void:
-	var velocity = Vector2.ZERO # The player's movement vector.
-	#var collision
-	
-	if Input.is_action_pressed("move_right"):
-		velocity.x += 1
-	if Input.is_action_pressed("move_left"):
-		velocity.x -= 1
-	if Input.is_action_pressed("move_down"):
-		velocity.y += 1
-	if Input.is_action_pressed("move_up"):
-		velocity.y -= 1
-	if Input.is_action_just_pressed("dig"):
-		dig()
+const SPEED = 300.0
+const JUMP_VELOCITY = -400.0
 
-	if velocity.length() > 0:
-		velocity = velocity.normalized() * speed
-		$AnimatedSprite2D.play()
+
+func _physics_process(delta: float) -> void:
+	# Add the gravity.
+	if not is_on_floor():
+		velocity += get_gravity() * delta
+
+	# Handle jump.
+	if Input.is_action_just_pressed("ui_accept") and is_on_floor():
+		velocity.y = JUMP_VELOCITY
+
+	# Get the input direction and handle the movement/deceleration.
+	# As good practice, you should replace UI actions with custom gameplay actions.
+	var direction := Input.get_axis("ui_left", "ui_right")
+	if direction:
+		velocity.x = direction * SPEED
 	else:
-		$AnimatedSprite2D.stop()
-		
-	position += velocity * delta
-	position = position.clamp(Vector2.ZERO, screen_size)
-	
-	if velocity.x > 0:
-		$AnimatedSprite2D.animation = "walk_right"
-	elif velocity.x < 0:
-		$AnimatedSprite2D.animation = "walk_left"
-	elif velocity.y < 0:
-		$AnimatedSprite2D.animation = "walk_up"
-	elif velocity.y > 0:
-		$AnimatedSprite2D.animation = "walk_down"
-			
+		velocity.x = move_toward(velocity.x, 0, SPEED)
 
-func _on_body_entered(body: Node2D) -> void:
-	#hide()
-	hit.emit()
-	$CollisionShape2D.set_deferred("disabled", true)
-	
-func start(pos):
-	position = pos
-	show()
-	$CollisionShape2D.disabled = false
-
-func dig():
-	var scene_to_instance = preload("res://hole.tscn")
-	var object = scene_to_instance.instantiate()
-	var coordinates = $AnimatedSprite2D.global_position
-	object.add_to_group(&"MapObjectsGroup")
-	var main = $AnimatedSprite2D.get_parent().get_parent()
-	var MOG = main.get_node("MapObjectsGroup")
-	MOG.add_child(object)
-	#main.add_child(object)
-	
-	object.position = Vector2(coordinates)
-	
+	move_and_slide()
