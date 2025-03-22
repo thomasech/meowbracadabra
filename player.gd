@@ -24,12 +24,15 @@ func _process(delta: float) -> void:
 		velocity.y += 1
 	if Input.is_action_pressed("move_up"):
 		velocity.y -= 1
+	if Input.is_action_just_pressed("dig"):
+		dig()
 
 	if velocity.length() > 0:
 		velocity = velocity.normalized() * speed
 		$AnimatedSprite2D.play()
 	else:
 		$AnimatedSprite2D.stop()
+		
 	position += velocity * delta
 	position = position.clamp(Vector2.ZERO, screen_size)
 	
@@ -41,7 +44,7 @@ func _process(delta: float) -> void:
 		$AnimatedSprite2D.animation = "walk_up"
 	elif velocity.y > 0:
 		$AnimatedSprite2D.animation = "walk_down"
-
+			
 
 func _on_body_entered(body: Node2D) -> void:
 	#hide()
@@ -52,3 +55,11 @@ func start(pos):
 	position = pos
 	show()
 	$CollisionShape2D.disabled = false
+
+func dig():
+	var scene_to_instance = preload("res://hole.tscn")
+	var object = scene_to_instance.instantiate()
+	var coordinates = $AnimatedSprite2D.global_position
+	$AnimatedSprite2D.get_parent().get_parent().add_child(object)
+	object.position = Vector2(coordinates)
+	

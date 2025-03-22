@@ -1,0 +1,8 @@
+[gd_scene load_steps=3 format=3 uid="uid://hjglfojsbua"]
+
+[ext_resource type="Texture2D" uid="uid://cb66qvq00wemo" path="res://art/hole.png" id="1_ln22a"]
+[ext_resource type="Script" uid="uid://dphwb1y5kodoo" path="res://hole.gd" id="2_1s0jb"]
+
+[node name="Hole" type="Sprite2D"]
+texture = ExtResource("1_ln22a")
+script = ExtResource("2_1s0jb")
